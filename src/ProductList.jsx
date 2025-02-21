@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState,useEffect, Fragment } from 'react';
 import './ProductList.css'
 import CartItem from './CartItem';
 
@@ -63,7 +63,13 @@ const handlePlantsClick = (e) => {
         {!showCart? (
         <div className="product-grid">
             <div className='product-grid'>
-                {products.map((p) => <div key={p.name}>{p.name}</div>)}
+                {products.map((p) => 
+                    (<Fragment>
+                        <div key={p.name}>{p.name}</div>
+                        <div key={p.name + ".desc"}>{p.description}</div>
+                        <div key={p.name + ".cost"}>{p.cost}</div>
+                    </Fragment>))
+                }
             </div>
         </div>
  ) :  (
