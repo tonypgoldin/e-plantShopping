@@ -1,12 +1,14 @@
+import "@testing-library/jest-dom";
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { screen } from "@testing-library/react";
 import {act } from "react-dom/test-utils";
 import ProductList from "../src/ProductList";
 
 describe("Product List", () => {
     let container;
 
-    const items = [{name: "Sunshine Plant", description: "Bright yellow like the sun", cost: "$18"}];
+    const items = [{name: "Sunshine Plant", description: "Bright yellow like the sun", cost: "$18", img: {src: "assets/images/pic1.png", alt: "plant product"}}];
 
     beforeEach(() => {
         container = document.createElement("div");
@@ -32,5 +34,14 @@ describe("Product List", () => {
         render(<ProductList products={items} />);
   
         expect(document.body.textContent).toContain("$18");
+    })
+
+    it("renders the image of the product", () => {
+        render(<ProductList products={items} />);
+  
+        const img = screen.getByRole("img");
+    
+        expect(img).toHaveAttribute("src", "assets/images/pic1.png");
+        expect(img).toHaveAttribute("alt", "plant product");
     })
 })

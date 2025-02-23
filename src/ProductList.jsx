@@ -1,6 +1,7 @@
 import React, { useState,useEffect, Fragment } from 'react';
 import './ProductList.css'
 import CartItem from './CartItem';
+import ImageComponent from './ImageComponent';
 
 function ProductList({products=[]}) {
     const [showCart, setShowCart] = useState(false); 
@@ -66,6 +67,7 @@ const handlePlantsClick = (e) => {
                 {products.map((p) => 
                     (<Fragment>
                         <div key={p.name}>{p.name}</div>
+                        <div key={p.name + ".img"}><ImageComponent src={p.img.src} alt={p.img.alt} /></div>
                         <div key={p.name + ".desc"}>{p.description}</div>
                         <div key={p.name + ".cost"}>{p.cost}</div>
                     </Fragment>))
