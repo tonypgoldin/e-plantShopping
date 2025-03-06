@@ -1,9 +1,10 @@
 import React, { useState,useEffect, Fragment } from 'react';
 import './ProductList.css'
 import CartItem from './CartItem';
-import ImageComponent from './ImageComponent';
+import ProductCategoryViewModel from './ProductCategoryViewModel';
+import { PLANTS_ARRAY } from './PlantProducts';
 
-function ProductList({products=[]}) {
+function ProductList({products=PLANTS_ARRAY}) {
     const [showCart, setShowCart] = useState(false); 
     const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
 
@@ -64,14 +65,7 @@ const handlePlantsClick = (e) => {
         {!showCart? (
         <div className="product-grid">
             <div className='product-grid'>
-                {products.map((p) => 
-                    (<Fragment>
-                        <div key={p.name}>{p.name}</div>
-                        <div key={p.name + ".img"}><ImageComponent src={p.img.src} alt={p.img.alt} /></div>
-                        <div key={p.name + ".desc"}>{p.description}</div>
-                        <div key={p.name + ".cost"}>{p.cost}</div>
-                    </Fragment>))
-                }
+                {products.map((p) => (<ProductCategoryViewModel category={p.category} products={p.plants} />))}
             </div>
         </div>
  ) :  (
