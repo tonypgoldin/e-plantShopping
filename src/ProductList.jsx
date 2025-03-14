@@ -3,10 +3,12 @@ import './ProductList.css'
 import CartItem from './CartItem';
 import ProductCategoryViewModel from './ProductCategoryViewModel';
 import { PLANTS_ARRAY } from './PlantProducts';
+import { addItem } from './CartSlice';
 
 function ProductList({products=PLANTS_ARRAY}) {
     const [showCart, setShowCart] = useState(false); 
     const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
+    const [addedToCart, setAddedToCart] = useState({})
 
    const styleObj={
     backgroundColor: '#4CAF50',
@@ -32,13 +34,14 @@ function ProductList({products=PLANTS_ARRAY}) {
     e.preventDefault();
     setShowCart(true); // Set showCart to true when cart icon is clicked
 };
+
 const handlePlantsClick = (e) => {
     e.preventDefault();
     setShowPlants(true); // Set showAboutUs to true when "About Us" link is clicked
     setShowCart(false); // Hide the cart when navigating to About Us
 };
 
-   const handleContinueShopping = (e) => {
+const handleContinueShopping = (e) => {
     e.preventDefault();
     setShowCart(false);
   };

@@ -11,7 +11,7 @@ const ImageComponent = ({ src, alt = "image" }) => {
   return (
     <div>
       {!error ? (
-        <img src={src} alt={alt} onError={() => setError(true)} />
+        <img className='product-image' src={src} alt={alt} onError={() => setError(true)} />
       ) : (
         <p>Image not available</p>
       )}
